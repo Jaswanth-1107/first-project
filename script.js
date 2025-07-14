@@ -41,7 +41,6 @@ const products = [
     category: "Tablets",
     image: "https://m.media-amazon.com/images/I/41ZpJ1+XJQL._SY300_SX300_.jpg"
   },
-  
   {
     name: "Oppo Pad Air",
     price: 15999,
@@ -49,7 +48,6 @@ const products = [
     category: "Tablets",
     image: "https://m.media-amazon.com/images/I/513FD4w8hGL.jpg"
   },
-  
   {
     name: "Acer EK220Q",
     price: 6249,
@@ -72,50 +70,46 @@ const products = [
     image: "https://img5.gadgetsnow.com/gd/images/products/additional/large/G425671_View_1/computer-laptop/monitors/zebronics-ac32fhd-led-curved-75hz-80cm-32-81-28-cm-1920x1080-pixels-fhd-resolution-monitor-with-hdmi-vga-dual-input-built-in-speaker-max-250-nits-brightness-black.jpg"
   }
 ];
-const productList = document.getElementById("productList");
 
-function renderProducts(filteredProducts) {
+const productList = document.getElementById("productList");
+const searchInput = document.getElementById("searchInput");
+
+// Render all products to page
+function renderProducts(productsToShow) {
   productList.innerHTML = "";
 
-  if (filteredProducts.length === 0) {
+  if (productsToShow.length === 0) {
     productList.innerHTML = "<p>No products found.</p>";
     return;
   }
-  filteredProducts.forEach((product) => {
-    const productDiv = document.createElement("div");
-    productDiv.classList.add("product");
-    productDiv.innerHTML = `
-      <img src="${product.image}" alt="${product.name}" />
+
+  productsToShow.forEach(product => {
+    const div = document.createElement("div");
+    div.classList.add("product");
+    div.innerHTML = `
+      <img src="${product.image}" alt="${product.name}">
       <h3>${product.name}</h3>
       <p><strong>Price:</strong> ₹${product.price}</p>
       <p><strong>Seller:</strong> ${product.seller}</p>
       <p><strong>Category:</strong> ${product.category}</p>
     `;
-    productList.appendChild(productDiv);
+    productList.appendChild(div);
   });
 }
+
+// Search filter
 function filterProducts() {
-  const searchText = searchInput.value.toLowerCase();
-  const selectedCategory = categoryFilter.value;
-  const selectedPrice = parseInt(priceFilter.value);
-
-  priceLabel.textContent = `Rs.${selectedPrice}`;
-
-  const filtered = products.filter((product) => {
-    const matchesSearch = product.name.toLowerCase().includes(searchText);
-    const matchesCategory = selectedCategory === "All" || product.category === selectedCategory;
-    const matchesPrice = product.price <= selectedPrice;
-
-    return matchesSearch && matchesCategory && matchesPrice;
-  });
-
+  const text = searchInput.value.toLowerCase();
+  const filtered = products.filter(p => p.name.toLowerCase().includes(text));
   renderProducts(filtered);
 }
 
-// Event listeners
+// Event
 searchInput.addEventListener("input", filterProducts);
-categoryFilter.addEventListener("change", filterProducts);
-priceFilter.addEventListener("input", filterProducts);
 
-// Initial render
-filterProducts();
+// Initial load
+renderProducts(products);
+
+
+
+
