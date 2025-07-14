@@ -1,17 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </title> e-commerse</title>
-    <style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>E-commerce Product Search</title>
+  <style>
     body {
       padding: 20px;
-    }
-    .filters {
-      display: flex;
-      gap: 20px;
-      margin-bottom: 20px;
     }
     .product-list {
       display: grid;
@@ -34,20 +29,11 @@
   </style>
 </head>
 <body>
-    <h1>JS CART</h1>
-      <div class="filters">
+  <h1>JS CART</h1>
+  <div class="filters">
     <input type="text" id="searchInput" placeholder="Search Product..." />
-    
-    <select id="categoryFilter"><br><br>
-      <option value="All">All</option>
-      <option value="Watch">Watch</option>
-      <option value="Tablets">Tablets</optionS>
-      <option value="Monitors">Monitors</option>
-    </select>
   </div>
-    <input type="range" id="priceFilter" min="1000" max="16000" step="500" />
-    <span id="priceLabel">Rs.16000</span>
   <div class="product-list" id="productList"></div>
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
